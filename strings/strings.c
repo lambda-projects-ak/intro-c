@@ -27,16 +27,18 @@ int string_length(char *s)
 */
 char *reverse_string(char *rv, char *s)
 {
+    // get length of string
     int length = string_length(s);
 
+    // current position in rv
     int current = 0;
+    // loop backwards over original string, increment up in rv, assign char
     for (int i = length - 1; i >= 0; i--)
     {
-        printf("%c\n", s[i]);
         rv[current] = s[i];
         current++;
     }
-
+    // assign null as last char
     rv[length] = '\0';
 
     return rv;
