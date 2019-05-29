@@ -56,24 +56,42 @@ char *find_char(char *str, int c)
 
     Do not use the `strstr` function from the standard library.
 */
+int string_length(char *s)
+{
+    int counter = 0;
+    while (*s != '\0')
+    {
+        counter++;
+        s++;
+    }
+    return counter;
+}
+
 char *find_string(char *haystack, char *needle)
 {
+    int length = string_length(needle);
+
+    // look while until match is found or end of haystack
     while (*haystack != '\0')
     {
-        // search for first letter
         if (*haystack == needle[0])
         {
-            printf("%d\n", 1);
-            // if found, do a for loop and check for next character match
-            for (int i = 0; i < strlen(needle); i++)
+            char *startingIndex = haystack;
+
+            for (int i = 0; i < 2; i++)
             {
-                // perform logic to check for matching string
+                if (startingIndex[i] != needle[i])
+                {
+                    return NULL;
+                }
             }
+            printf("%s\n", startingIndex);
+            return startingIndex;
         }
-        // if not count, increment
+        // if letter match not found, increment
         haystack++;
     }
-    // if not found
+    // if no match is found
     return NULL;
 }
 
@@ -86,10 +104,10 @@ int main(void)
     printf("Found char: %s\n", found_char);
     printf("Found string: %s\n", found_string);
 
-    char buffer[1024];
+    // char buffer[1024];
 
-    string_copy(buffer, "Hello!");
-    printf("%s", buffer); // Prints "Hello!"
+    // string_copy(buffer, "Hello!");
+    // printf("%s\n", buffer); // Prints "Hello!"
 
     return 0;
 }
